@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   #        :recoverable, :rememberable, :trackable, :validatable
   devise :rememberable, :trackable, :omniauthable, :omniauth_providers => [:facebook]
 
-  belongs_to :voted_for, class_name: User.name
+  belongs_to :voted_for, class_name: User.name, counter_cache: :voters_count
   has_many :voters, class_name: User.name, foreign_key: :voted_for_id, dependent: :nullify
 
   after_create :publish_to_pubnub
@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
     end
 
     def all_json
-      all.collect(&:for_json).to_json
+      order(voters_count: :desc).collect(&:for_json).to_json
     end
   end
 

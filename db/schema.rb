@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150208104516) do
+ActiveRecord::Schema.define(version: 20150208122221) do
 
   create_table "users", force: :cascade do |t|
     t.datetime "remember_created_at"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20150208104516) do
     t.string   "email"
     t.string   "image"
     t.integer  "voted_for_id"
+    t.integer  "voters_count",        default: 0
   end
 
   add_index "users", ["voted_for_id"], name: "index_users_on_voted_for_id"
