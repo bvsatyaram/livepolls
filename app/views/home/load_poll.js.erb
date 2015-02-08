@@ -1,2 +1,5 @@
-poll.showUsers('<%= j raw(@users) %>');
+<% if current_user.voted_for %>
+  poll.setVotedFor(<%= current_user.voted_for.id %>);
+<% end %>
+poll.showUsers('<%= j raw(@users_json) %>');
 $('#show_poll').remove();

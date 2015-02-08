@@ -3,11 +3,14 @@
 </div>
 
 <script id="user_template" type="x-tmpl-mustache">
-<div class="user row">
+<div class="user row {{^showVoteLink}}my-vote{{/showVoteLink}}">
   <img src="{{user.image}}" class="user_image" />
   <div class="user_name">
     {{user.name}}
     <span class="votes_count">{{user.votes.length}} vote(s)</span>
+    {{#showVoteLink}}
+      <a class="vote" data-remote="true" data-method="post" href="/home/vote?user_id={{user.id}}"><span class='glyphicon glyphicon-thumbs-up'></span>Vote</a>
+    {{/showVoteLink}}
   </div>
   <div class="votes">
     {{#votes}}

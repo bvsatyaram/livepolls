@@ -1,0 +1,36 @@
+class Poll
+  votedFor: null
+
+  setVotedFor: (user_id) ->
+    @votedFor = user_id
+
+  showUser: (user) ->
+    console.log "Adding a user"
+    template = $('#user_template').html();
+    Mustache.parse(template);
+    rendered = Mustache.render(template, {user: user, votes: user.votes, showVoteLink: (@votedFor != user.id)});
+    $('#users').append(rendered)
+
+  showUsers: (users) ->
+    $('#users').html('')
+    console.log "Adding Users"
+    @showUser(user) for user in JSON.parse(users)
+
+@poll = new Poll
+
+$ ->
+  if $('#users').length
+    CHAT_PUBNUB = PUBNUB.init
+      publish_key: "<%= ENV['PUBNUB_PUBLISH_KEY'] %>",
+      subscribe_key: "<%= ENV['PUBNUB_SUBSCRIBE_KEY'] %>"
+
+    CHAT_PUBNUB.unsubscribe
+      channel: 'live-polls'
+
+    CHAT_PUBNUB.subscribe
+      channel: 'live-polls',
+      message: (m) ->
+        poll.showUsers(m)
+
+    $('#show_poll').click()
+

@@ -2,7 +2,11 @@
   margin-top: 90px;
   
   .user {
-    margin-bottom: 15px;
+    padding: 10px;
+    
+    &.my-vote {
+      background-color: #D5F0EB;
+    }
 
     img.user_image {
       float: left;
@@ -14,8 +18,8 @@
     }
 
     .votes_count {
-      font-size: 0.9em;
       color: $primary-color;
+      margin: 0 1em;
     }
       
     .votes {

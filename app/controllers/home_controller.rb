@@ -6,6 +6,18 @@ class HomeController < ApplicationController
   end
 
   def load_poll
-    @users = User.all.collect(&:for_json).to_json
+    load_users_json
   end
+
+  def vote
+    @user = User.find(params[:user_id])
+    current_user.update_attribute(:voted_for_id, @user.id)
+    load_users_json
+  end
+
+  private
+
+    def load_users_json
+      @users_json = User.all_json
+    end
 end

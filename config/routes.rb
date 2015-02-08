@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'home/index'
   get 'home/load_poll'
+  post 'home/vote'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   devise_scope :user do
