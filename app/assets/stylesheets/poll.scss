@@ -1,0 +1,28 @@
+#users {
+  margin-top: 90px;
+  
+  .user {
+    margin-bottom: 15px;
+
+    img.user_image {
+      float: left;
+      margin-right: 10px;
+    }
+
+    .user_name {
+      font-weight: bold;
+    }
+
+    .votes_count {
+      font-size: 0.9em;
+      color: $primary-color;
+    }
+      
+    .votes {
+      img {
+        height: 30px;
+        width: 30px;
+      }
+    }
+  }
+}

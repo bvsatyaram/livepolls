@@ -1,0 +1,31 @@
+#welcome {
+  text-align: center;
+  height: 100vh;
+
+  #welcome_content {
+    padding: 3em 0 5em;
+    border: 1px solid transparent;
+    @include vertical-center;
+
+    h1 {
+      font-size: 5vw;
+      color: $primary-color;
+    }
+
+    a.facebook_login {
+      display: inline-block;
+      background-color: #2980b9;
+      color: $light-font-color;
+      padding: 0.5em 2em;
+      text-decoration: none;
+      font-size: 2vw;
+      margin-top: 5vh;
+      transition: background-color 0.3s ease-in;
+
+      &:hover {
+        background-color: lighten(#2980b9, 8%);
+        text-decoration: none;
+      }
+    }
+  }
+}

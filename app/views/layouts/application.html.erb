@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Livepolls</title>
+  <meta charset='utf-8'>
+  <title>Live Polls</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <script src="https://cdn.pubnub.com/pubnub.min.js"></script>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
+  <header class="navbar-fixed-top">
+    <% if current_user %>
+      <div id="current_user" class="pull-right">
+        <div class="user_details pull-right">
+          <%= content_tag :div, current_user.name, class: "name" %>
+          <%= link_to raw("<span class='glyphicon glyphicon-log-out'></span>Signout"), destroy_user_session_path %>
+        </div>
+        <%= image_tag current_user.image, class: 'pull-right' %>
+      </div>
+    <% end %>
+    <div id="brand">Live Polls</div>
+  </header>
+  <%= yield %>
 
 </body>
 </html>

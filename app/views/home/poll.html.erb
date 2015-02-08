@@ -1,0 +1,18 @@
+<div id="users" class="container">
+  <%= link_to "Show Poll", home_load_poll_path(format: :js), remote: true, id: "show_poll", class: "btn btn-sm" %>
+</div>
+
+<script id="user_template" type="x-tmpl-mustache">
+<div class="user row">
+  <img src="{{user.image}}" class="user_image" />
+  <div class="user_name">
+    {{user.name}}
+    <span class="votes_count">{{user.votes.length}} vote(s)</span>
+  </div>
+  <div class="votes">
+    {{#votes}}
+      <img src="{{image}}" class="voter_image" alt={{name}} title={{name}} />
+    {{/votes}}
+  </div>
+</div>
+</script>
