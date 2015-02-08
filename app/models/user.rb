@@ -51,7 +51,9 @@ class User < ActiveRecord::Base
     end
 
     def all_json
-      order(voters_count: :desc).collect(&:for_json).to_json
+      # +unscope+ is required because objects created from +from_omniauth+ would have default
+      # conditions where +where(provider: auth.provider, uid: auth.uid)+ already set
+      unscope(:where).order(voters_count: :desc).collect(&:for_json).to_json
     end
   end
 
